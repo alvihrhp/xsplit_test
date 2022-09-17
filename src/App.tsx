@@ -50,8 +50,6 @@ const App: React.FC<Props> = () => {
 
       const result: any = await TodoService.create(newTask);
 
-      console.log("masuk result", result);
-
       setTodos([...todos, result]);
 
       Swal.fire({
@@ -139,7 +137,7 @@ const App: React.FC<Props> = () => {
     try {
       const data = {
         name: updateInputs[0].value,
-        description: updateInputs[0].value,
+        description: updateInputs[1].value,
         isCompleted: todo.isCompleted,
       };
 

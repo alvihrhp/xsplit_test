@@ -26,3 +26,9 @@ npm run dev
 # Run Front End
 yarn start-client
 ```
+
+## Link Deployment
+
+```sh
+https://xsplit-test.herokuapp.com/
+```
