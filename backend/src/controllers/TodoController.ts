@@ -7,22 +7,29 @@ const prisma = new PrismaClient();
 class TodoController {
   static async get(req: Request, res: Response, next: NextFunction) {
     try {
+      prisma.$connect();
+
       const todos = await prisma.todo.findMany({
         orderBy: {
           id: "asc",
         },
       });
 
+      prisma.$disconnect();
+
       res.status(200).json({
         message: "Fetch Success",
         data: todos,
       });
     } catch (error) {
+      prisma.$disconnect();
       console.log(error);
     }
   }
   static async create(req: Request, res: Response, next: NextFunction) {
     try {
+      prisma.$connect();
+
       const { name, description, isCompleted } = req.body;
 
       if (!name || !description) {
@@ -37,11 +44,14 @@ class TodoController {
         },
       });
 
+      prisma.$disconnect();
+
       res.status(201).json({
         message: "Create success",
         data: newTodo,
       });
     } catch (error: any) {
+      prisma.$disconnect();
       res.status(400).json({
         message: error.message,
       });
@@ -49,6 +59,8 @@ class TodoController {
   }
   static async complete(req: Request, res: Response, next: NextFunction) {
     try {
+      prisma.$connect();
+
       const { id } = req.params;
 
       const completeTodo = await prisma.todo.update({
@@ -60,16 +72,21 @@ class TodoController {
         },
       });
 
+      prisma.$disconnect();
+
       res.status(200).json({
         message: "Task Completed",
         data: completeTodo,
       });
     } catch (error) {
+      prisma.$connect();
       console.log(error);
     }
   }
   static async update(req: Request, res: Response, next: NextFunction) {
     try {
+      prisma.$connect();
+
       const { name, description, isCompleted } = req.body;
 
       if (!name || !description) {
@@ -89,11 +106,14 @@ class TodoController {
         },
       });
 
+      prisma.$disconnect();
+
       res.status(200).json({
         message: "Update Success",
         data: updateTodo,
       });
     } catch (error: any) {
+      prisma.$disconnect();
       res.status(400).json({
         message: error.message,
       });
@@ -101,6 +121,8 @@ class TodoController {
   }
   static async delete(req: Request, res: Response, next: NextFunction) {
     try {
+      prisma.$connect();
+
       const { id } = req.params;
 
       const deleteTodo = await prisma.todo.delete({
@@ -109,11 +131,15 @@ class TodoController {
         },
       });
 
+      prisma.$disconnect();
+
       res.status(200).json({
         message: "Delete Succes",
         data: deleteTodo,
       });
     } catch (error) {
+      prisma.$disconnect();
+
       console.log(error);
     }
   }

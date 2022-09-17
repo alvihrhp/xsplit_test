@@ -49,6 +49,7 @@ var TodoController = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
+                        prisma.$connect();
                         return [4 /*yield*/, prisma.todo.findMany({
                                 orderBy: {
                                     id: "asc",
@@ -56,6 +57,7 @@ var TodoController = /** @class */ (function () {
                             })];
                     case 1:
                         todos = _a.sent();
+                        prisma.$disconnect();
                         res.status(200).json({
                             message: "Fetch Success",
                             data: todos,
@@ -63,6 +65,7 @@ var TodoController = /** @class */ (function () {
                         return [3 /*break*/, 3];
                     case 2:
                         error_1 = _a.sent();
+                        prisma.$disconnect();
                         console.log(error_1);
                         return [3 /*break*/, 3];
                     case 3: return [2 /*return*/];
@@ -77,6 +80,7 @@ var TodoController = /** @class */ (function () {
                 switch (_b.label) {
                     case 0:
                         _b.trys.push([0, 2, , 3]);
+                        prisma.$connect();
                         _a = req.body, name_1 = _a.name, description = _a.description, isCompleted = _a.isCompleted;
                         if (!name_1 || !description) {
                             throw { message: "All input must be filled" };
@@ -90,6 +94,7 @@ var TodoController = /** @class */ (function () {
                             })];
                     case 1:
                         newTodo = _b.sent();
+                        prisma.$disconnect();
                         res.status(201).json({
                             message: "Create success",
                             data: newTodo,
@@ -97,6 +102,7 @@ var TodoController = /** @class */ (function () {
                         return [3 /*break*/, 3];
                     case 2:
                         error_2 = _b.sent();
+                        prisma.$disconnect();
                         res.status(400).json({
                             message: error_2.message,
                         });
@@ -113,6 +119,7 @@ var TodoController = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
+                        prisma.$connect();
                         id = req.params.id;
                         return [4 /*yield*/, prisma.todo.update({
                                 where: {
@@ -124,6 +131,7 @@ var TodoController = /** @class */ (function () {
                             })];
                     case 1:
                         completeTodo = _a.sent();
+                        prisma.$disconnect();
                         res.status(200).json({
                             message: "Task Completed",
                             data: completeTodo,
@@ -131,6 +139,7 @@ var TodoController = /** @class */ (function () {
                         return [3 /*break*/, 3];
                     case 2:
                         error_3 = _a.sent();
+                        prisma.$connect();
                         console.log(error_3);
                         return [3 /*break*/, 3];
                     case 3: return [2 /*return*/];
@@ -145,6 +154,7 @@ var TodoController = /** @class */ (function () {
                 switch (_b.label) {
                     case 0:
                         _b.trys.push([0, 2, , 3]);
+                        prisma.$connect();
                         _a = req.body, name_2 = _a.name, description = _a.description, isCompleted = _a.isCompleted;
                         if (!name_2 || !description) {
                             throw { message: "All input must be filled" };
@@ -162,6 +172,7 @@ var TodoController = /** @class */ (function () {
                             })];
                     case 1:
                         updateTodo = _b.sent();
+                        prisma.$disconnect();
                         res.status(200).json({
                             message: "Update Success",
                             data: updateTodo,
@@ -169,6 +180,7 @@ var TodoController = /** @class */ (function () {
                         return [3 /*break*/, 3];
                     case 2:
                         error_4 = _b.sent();
+                        prisma.$disconnect();
                         res.status(400).json({
                             message: error_4.message,
                         });
@@ -185,6 +197,7 @@ var TodoController = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
+                        prisma.$connect();
                         id = req.params.id;
                         return [4 /*yield*/, prisma.todo.delete({
                                 where: {
@@ -193,6 +206,7 @@ var TodoController = /** @class */ (function () {
                             })];
                     case 1:
                         deleteTodo = _a.sent();
+                        prisma.$disconnect();
                         res.status(200).json({
                             message: "Delete Succes",
                             data: deleteTodo,
@@ -200,6 +214,7 @@ var TodoController = /** @class */ (function () {
                         return [3 /*break*/, 3];
                     case 2:
                         error_5 = _a.sent();
+                        prisma.$disconnect();
                         console.log(error_5);
                         return [3 /*break*/, 3];
                     case 3: return [2 /*return*/];
