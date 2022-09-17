@@ -1,8 +1,8 @@
-#XSplit Test
+# XSplit Test
 
 The purpose of this repository is to accommodate the xsplit test source code
 
-##How to run the web app locally
+## How to run the web app locally
 
 ```sh
 # Cloning repository
