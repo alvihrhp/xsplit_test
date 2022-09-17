@@ -25,7 +25,7 @@ async function fetchHelper(
 
     switch (response.status) {
       case 400:
-        throw responseJSON;
+        throw responseJSON.message;
     }
 
     return responseJSON.data;

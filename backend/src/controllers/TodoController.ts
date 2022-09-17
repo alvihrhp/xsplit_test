@@ -25,6 +25,10 @@ class TodoController {
     try {
       const { name, description, isCompleted } = req.body;
 
+      if (!name || !description) {
+        throw { message: "All input must be filled" };
+      }
+
       const newTodo = await prisma.todo.create({
         data: {
           name,
@@ -37,8 +41,10 @@ class TodoController {
         message: "Create success",
         data: newTodo,
       });
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      res.status(400).json({
+        message: error.message,
+      });
     }
   }
   static async complete(req: Request, res: Response, next: NextFunction) {
@@ -66,6 +72,10 @@ class TodoController {
     try {
       const { name, description, isCompleted } = req.body;
 
+      if (!name || !description) {
+        throw { message: "All input must be filled" };
+      }
+
       const { id } = req.params;
 
       const updateTodo = await prisma.todo.update({
@@ -83,8 +93,10 @@ class TodoController {
         message: "Update Success",
         data: updateTodo,
       });
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      res.status(400).json({
+        message: error.message,
+      });
     }
   }
   static async delete(req: Request, res: Response, next: NextFunction) {
