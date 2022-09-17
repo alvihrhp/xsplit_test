@@ -23,6 +23,13 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/api/v1", router);
 
+// Render React through express
+app.use(express.static(path.join(__dirname, "../..", "build")));
+app.use(express.static("public"));
+app.use((req, res, next) => {
+  res.sendFile(path.join(__dirname, "../..", "build", "index.html"));
+});
+
 app.listen(PORT, () => {
   console.log(`Server is litening on PORT = ${PORT}`);
 });
